@@ -4,7 +4,7 @@
   "description": "A simple marketplace demo with CouchDB",
   "main": "index.js",
   "scripts": {
-    "db:up": "docker-compose --env-file ./client/.env.local up",
+    "db:up": "docker-compose --env-file ./app/.env.local up",
     "db:down": "docker-compose down",
     "db:seed": "node ./scripts/seed-db.js",
     "test": "echo \"Error: no test specified\" && exit 1"

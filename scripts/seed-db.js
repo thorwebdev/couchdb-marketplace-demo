@@ -1,4 +1,4 @@
-require('dotenv').config({ path: './client/.env.local' });
+require('dotenv').config({ path: './app/.env.local' });
 const nano = require('nano')(
   `http://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@localhost:5984`
 );

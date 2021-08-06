@@ -4,14 +4,15 @@
   "description": "A simple marketplace demo with CouchDB",
   "main": "index.js",
   "scripts": {
-    "start:db": "docker run -d --name couchdb-marketplace -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb:latest",
-    "start:db-server": "docker run -p 5984:5984 -d  -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb",
-    "seed-db": "node ./scripts/seed-db.js",
+    "db:up": "docker-compose --env-file ./client/.env.local up",
+    "db:down": "docker-compose down",
+    "db:seed": "node ./scripts/seed-db.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Thorsten Schaeff",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "nano": "^9.0.3"
   }
 }

@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  couchserver:
+    image: couchdb
+    ports:
+      - '5984:5984'
+    environment:
+      - COUCHDB_USER=${COUCHDB_USER}
+      - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}

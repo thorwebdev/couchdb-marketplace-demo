@@ -1,4 +1,7 @@
-const nano = require('nano')('http://admin:password@localhost:5984');
+require('dotenv').config({ path: './client/.env.local' });
+const nano = require('nano')(
+  `http://${process.env.COUCHDB_USER}:${process.env.COUCHDB_PASSWORD}@localhost:5984`
+);
 
 const seedDB = async () => {
   try {

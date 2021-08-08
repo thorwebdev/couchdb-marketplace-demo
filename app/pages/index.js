@@ -27,17 +27,6 @@ export default function Home({ products }) {
           <ImageGrid products={data ? data.docs : products} />
         </div>
       </main>
-
-      <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://thor.news"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Made by thorwebdev ⚡️
-        </a>
-      </footer>
     </div>
   );
 }

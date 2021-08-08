@@ -21,8 +21,28 @@ export const UserContextProvider = (props) => {
     session,
     searchTerm,
     setSearchTerm,
-    logIn: () => {},
-    signUp: () => {},
+    logIn: async (name, password) => {
+      const response = await fetch('api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, password }),
+      }).then((res) => res.json());
+      if (response.name) setSession(response);
+      return response;
+    },
+    signUp: async (name, password) => {
+      const response = await fetch('api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, password }),
+      }).then((res) => res.json());
+      if (response.name) setSession(response);
+      return response;
+    },
     logOut: () => {
       setSession(null);
       router.replace('/');

@@ -1,8 +1,6 @@
-import Head from 'next/head';
-import { useState } from 'react';
 import ImageGrid from '../components/ImageGrid';
-import useSWR from 'swr';
 import { useUser } from '../utils/useUser';
+import useSWR from 'swr';
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home({ products }) {
@@ -15,11 +13,6 @@ export default function Home({ products }) {
 
   return (
     <div className="flex flex-col items-center justify-center py-2">
-      <Head>
-        <title>CouchDB marketplace demo</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className="flex flex-col items-center justify-center w-full flex-1">
         <h1 className="text-6xl font-bold">CouchDB marketplace demo</h1>
 

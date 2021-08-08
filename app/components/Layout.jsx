@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useState } from 'react';
 import { useUser } from '../utils/useUser';
 
@@ -276,6 +277,10 @@ export default function Layout(props) {
       </div>
 
       <main className="mt-12">
+        <Head>
+          <title>CouchDB marketplace demo</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
           {props.children}
         </div>

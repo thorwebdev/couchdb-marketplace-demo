@@ -5,13 +5,13 @@ const nano = Nano(
 );
 const products = nano.use('products');
 
-export default async function getProducts(req, res) {
+export default async function getProductsBySearchTerm(req, res) {
   const {
-    query: { seller },
+    query: { search },
   } = req;
   const doclist = await products.find({
     selector: {
-      seller: { $eq: seller },
+      name: { $regex: `(?i)${search}` },
     },
     limit: 50,
   });

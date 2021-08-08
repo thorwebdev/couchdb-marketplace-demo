@@ -12,20 +12,32 @@ const seedDB = async () => {
     }
     await nano.db.create('products');
     const products = nano.use('products');
-    const response = await products.insert({
-      seller: 'admin',
-      name: 'Banana',
-      description: 'A curvy yellow fruit.',
-      images: [
-        'https://image.shutterstock.com/image-photo/bananas-grapes-600w-518328943.jpg',
-      ],
-      price: {
-        amount: 299,
-        currency: 'sgd',
-      },
-    });
+    const responses = await Promise.all([
+      products.insert({
+        seller: 'admin',
+        name: 'Banana',
+        description: 'A curvy yellow fruit.',
+        images: [
+          'https://image.shutterstock.com/image-photo/bananas-grapes-600w-518328943.jpg',
+        ],
+        price: {
+          amount: 299,
+          currency: 'sgd',
+        },
+      }),
+      products.insert({
+        seller: 'admin',
+        name: 'Boat',
+        description: 'A floating vessel.',
+        images: ['https://images.unsplash.com/photo-1544634043-dde2dc1b3813'],
+        price: {
+          amount: 5500000,
+          currency: 'sgd',
+        },
+      }),
+    ]);
     // succeeded
-    console.log(response);
+    console.log(responses);
     // Create users table
     await nano.db.create('_users');
   } catch (e) {

@@ -14,13 +14,13 @@ export default function Home({ products }) {
   if (error) console.log(error);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex flex-col items-center justify-center py-2">
       <Head>
         <title>CouchDB marketplace demo</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20">
+      <main className="flex flex-col items-center justify-center w-full flex-1">
         <h1 className="text-6xl font-bold">CouchDB marketplace demo</h1>
 
         <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">

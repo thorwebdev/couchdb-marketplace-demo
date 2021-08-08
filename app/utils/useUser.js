@@ -1,13 +1,20 @@
 import { useEffect, useState, createContext, useContext } from 'react';
+import { useRouter } from 'next/router';
 
 export const UserContext = createContext();
 
 export const UserContextProvider = (props) => {
   const [session, setSession] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
-    // TODO get session
+    // Get session
+    const getSession = async () => {
+      const session = await fetch('api/session').then((res) => res.json());
+      if (session.name) setSession(session);
+    };
+    getSession();
   }, []);
 
   const value = {
@@ -16,7 +23,10 @@ export const UserContextProvider = (props) => {
     setSearchTerm,
     logIn: () => {},
     signUp: () => {},
-    logOut: () => {},
+    logOut: () => {
+      setSession(null);
+      router.replace('/');
+    },
   };
   return <UserContext.Provider value={value} {...props} />;
 };

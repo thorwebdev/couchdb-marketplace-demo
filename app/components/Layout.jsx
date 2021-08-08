@@ -4,7 +4,7 @@ import { useUser } from '../utils/useUser';
 export default function Layout(props) {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { searchTerm, setSearchTerm } = useUser();
+  const { session, logOut, searchTerm, setSearchTerm } = useUser();
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -145,25 +145,52 @@ export default function Layout(props) {
                       aria-labelledby="user-menu-button"
                       tabIndex="-1"
                     >
-                      <a
-                        href="#"
-                        className="block py-2 px-4 text-sm text-gray-700"
-                        role="menuitem"
-                        tabIndex="-1"
-                        id="user-menu-item-0"
-                      >
-                        Your Profile
-                      </a>
+                      {session ? (
+                        <div>
+                          <a
+                            href="/user"
+                            className="block py-2 px-4 text-sm text-gray-700"
+                            role="menuitem"
+                            tabIndex="-1"
+                            id="user-menu-item-0"
+                          >
+                            Your Profile
+                          </a>
 
-                      <a
-                        href="#"
-                        className="block py-2 px-4 text-sm text-gray-700"
-                        role="menuitem"
-                        tabIndex="-1"
-                        id="user-menu-item-2"
-                      >
-                        Sign out
-                      </a>
+                          <button
+                            className="block py-2 px-4 text-sm text-gray-700"
+                            role="menuitem"
+                            tabIndex="-1"
+                            id="user-menu-item-2"
+                            onClick={logOut}
+                          >
+                            Sign out
+                          </button>
+                        </div>
+                      ) : (
+                        <div>
+                          <a
+                            href="/login"
+                            className="block py-2 px-4 text-sm text-gray-700"
+                            role="menuitem"
+                            tabIndex="-1"
+                            id="user-menu-item-0"
+                          >
+                            Sign In
+                          </a>
+
+                          <a
+                            href="/signup"
+                            className="block py-2 px-4 text-sm text-gray-700"
+                            role="menuitem"
+                            tabIndex="-1"
+                            id="user-menu-item-2"
+                            onClick={logOut}
+                          >
+                            Sign Up
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -186,10 +213,7 @@ export default function Layout(props) {
                 </div>
                 <div className="ml-3">
                   <div className="text-base font-medium text-white">
-                    Tom Cook
-                  </div>
-                  <div className="text-sm font-medium text-indigo-300">
-                    tom@example.com
+                    {session?.name}
                   </div>
                 </div>
                 <button className="ml-auto bg-indigo-600 flex-shrink-0 rounded-full p-1 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white">
@@ -212,27 +236,46 @@ export default function Layout(props) {
                   </svg>
                 </button>
               </div>
-              <div className="mt-3 px-2 space-y-1">
-                <a
-                  href="#"
-                  className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
-                >
-                  Your Profile
-                </a>
+              {session ? (
+                <div className="mt-3 px-2 space-y-1">
+                  <a
+                    href="/user"
+                    className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
+                  >
+                    Your Profile
+                  </a>
 
-                <a
-                  href="#"
-                  className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
-                >
-                  Sign out
-                </a>
-              </div>
+                  <button
+                    onClick={logOut}
+                    className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
+                  >
+                    Sign out
+                  </button>
+                </div>
+              ) : (
+                <div className="mt-3 px-2 space-y-1">
+                  <a
+                    href="/login"
+                    className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
+                  >
+                    Sign In
+                  </a>
+
+                  <a
+                    href="/signup"
+                    onClick={logOut}
+                    className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
+                  >
+                    Sign up
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </nav>
       </div>
 
-      <main className="-mt-32">
+      <main className="mt-12">
         <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
           {props.children}
         </div>

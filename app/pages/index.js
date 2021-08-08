@@ -5,11 +5,10 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home({ products }) {
   const { searchTerm } = useUser();
-  const { data, error } = useSWR(
+  const { data } = useSWR(
     searchTerm ? `api/products/q/${searchTerm}` : null,
     fetcher
   );
-  if (error) console.log(error);
 
   return (
     <div className="flex flex-col items-center justify-center py-2">

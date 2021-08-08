@@ -6,6 +6,28 @@ const nano = Nano(
 const products = nano.use('products');
 
 export default async function getProducts(req, res) {
-  const doclist = await products.list({ include_docs: true });
-  res.status(200).json(doclist);
+  if (req.method !== 'POST') {
+    // Serve products
+    const doclist = await products.list({ include_docs: true });
+    res.status(200).json(doclist);
+  } else {
+    // Add product
+    try {
+      const { seller } = req.body;
+      const response = await products.insert({
+        seller,
+        name: 'Test',
+        description: 'Test.',
+        images: [],
+        price: {
+          amount: 100,
+          currency: 'sgd',
+        },
+      });
+      const product = await products.get(response.id);
+      res.status(200).json(product);
+    } catch (error) {
+      res.status(400).json(error);
+    }
+  }
 }

@@ -35,6 +35,16 @@ const seedDB = async () => {
           currency: 'sgd',
         },
       }),
+      products.insert({
+        seller: 'admin',
+        name: 'Shoe',
+        description: 'A comfy vessel for your feet.',
+        images: ['https://images.unsplash.com/photo-1542291026-7eec264c27ff'],
+        price: {
+          amount: 19900,
+          currency: 'sgd',
+        },
+      }),
     ]);
     // succeeded
     console.log(responses);

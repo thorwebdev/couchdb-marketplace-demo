@@ -2,10 +2,11 @@ import Head from 'next/head';
 import { useState } from 'react';
 import ImageGrid from '../components/ImageGrid';
 import useSWR from 'swr';
+import { useUser } from '../utils/useUser';
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home({ products }) {
-  const [searchTerm, setSearchTerm] = useState('');
+  const { searchTerm } = useUser();
   const { data, error } = useSWR(
     searchTerm ? `api/products/q/${searchTerm}` : null,
     fetcher
@@ -21,23 +22,6 @@ export default function Home({ products }) {
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20">
         <h1 className="text-6xl font-bold">CouchDB marketplace demo</h1>
-
-        <div className="mt-5 relative flex items-center">
-          <input
-            type="text"
-            name="search"
-            id="search"
-            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-md"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Quick search"
-          />
-          <div className="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
-            <kbd className="inline-flex items-center border border-gray-200 rounded px-2 text-sm font-sans font-medium text-gray-400">
-              ⌘K
-            </kbd>
-          </div>
-        </div>
 
         <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
           <ImageGrid products={data ? data.docs : products} />

@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useUser } from '../utils/useUser';
 
 export default function Layout(props) {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { searchTerm, setSearchTerm } = useUser();
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -46,6 +48,8 @@ export default function Layout(props) {
                       placeholder="Search"
                       type="search"
                       name="search"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
                     />
                   </div>
                 </div>

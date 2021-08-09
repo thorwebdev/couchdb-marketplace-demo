@@ -7,6 +7,7 @@
     "db:up": "docker-compose --env-file ./app/.env.local up",
     "db:down": "docker-compose down",
     "db:seed": "node ./scripts/seed-db.js",
+    "bootstrap": "npm i && npm run db:seed && cd app && npm i",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Thorsten Schaeff",

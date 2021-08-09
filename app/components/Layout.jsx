@@ -129,11 +129,15 @@ export default function Layout(props) {
                         onClick={() => setUserMenuOpen(!userMenuOpen)}
                       >
                         <span className="sr-only">Open user menu</span>
-                        <img
-                          className="rounded-full h-8 w-8"
-                          src="https://image.flaticon.com/icons/png/512/1077/1077063.png"
-                          alt=""
-                        />
+                        <span className="inline-block h-8 w-8 rounded-full overflow-hidden bg-gray-100">
+                          <svg
+                            className="h-full w-full text-gray-300"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                          </svg>
+                        </span>
                       </button>
                     </div>
                     <div
@@ -179,17 +183,6 @@ export default function Layout(props) {
                           >
                             Sign In
                           </a>
-
-                          <a
-                            href="/signup"
-                            className="block py-2 px-4 text-sm text-gray-700"
-                            role="menuitem"
-                            tabIndex="-1"
-                            id="user-menu-item-2"
-                            onClick={logOut}
-                          >
-                            Sign Up
-                          </a>
                         </div>
                       )}
                     </div>
@@ -206,11 +199,15 @@ export default function Layout(props) {
             <div className="pt-4 pb-3 border-t border-indigo-700">
               <div className="px-5 flex items-center">
                 <div className="flex-shrink-0">
-                  <img
-                    className="rounded-full h-10 w-10"
-                    src="https://image.flaticon.com/icons/png/512/1077/1077063.png"
-                    alt=""
-                  />
+                  <span className="inline-block h-10 w-10 rounded-full overflow-hidden bg-gray-100">
+                    <svg
+                      className="h-full w-full text-gray-300"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                  </span>
                 </div>
                 <div className="ml-3">
                   <div className="text-base font-medium text-white">
@@ -260,14 +257,6 @@ export default function Layout(props) {
                     className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
                   >
                     Sign In
-                  </a>
-
-                  <a
-                    href="/signup"
-                    onClick={logOut}
-                    className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
-                  >
-                    Sign up
                   </a>
                 </div>
               )}

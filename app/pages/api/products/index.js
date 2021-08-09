@@ -13,15 +13,15 @@ export default async function getProducts(req, res) {
   } else {
     // Add product
     try {
-      const { seller } = req.body;
+      const { seller, name, description, price } = req.body;
       const response = await products.insert({
         seller,
-        name: 'Test',
-        description: 'Test.',
+        name,
+        description,
         images: [],
         price: {
-          amount: 100,
-          currency: 'sgd',
+          amount: price.amount * 100,
+          currency: price.currency,
         },
       });
       const product = await products.get(response.id);

@@ -1,0 +1,5 @@
+{
+  "name": "CouchDB marketplace",
+  "twitter": "thorwebdev",
+  "sidebar": [["API ref", "/"]]
+}
